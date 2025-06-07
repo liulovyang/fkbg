@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>考前拜一拜 - 祈福好运</title>
+    <title>考前祈福 - 好运相伴</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,49 +14,52 @@
         }
         
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('teacher.jpg') no-repeat center center fixed;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('teacher.jpg') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: #fff;
             overflow: hidden;
             position: relative;
+            transition: background-image 1s ease-in-out;
         }
         
         .container {
             text-align: center;
-            max-width: 800px;
+            max-width: 650px;
             padding: 30px;
-            background: rgba(139, 69, 19, 0.5); /* 深棕色半透明背景 */
+            background: rgba(139, 69, 19, 0.55); /* 降低不透明度 */
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            border: 2px solid #8B4513;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            border: 2px solid #FFD700;
             position: relative;
             z-index: 10;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(4px);
+            margin-top: 20px;
         }
         
         .title {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
             color: #FFD700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            letter-spacing: 8px;
+            letter-spacing: 6px;
         }
         
         .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
             color: #FFEBCD;
         }
         
         .blessing-area {
             min-height: 100px;
-            margin: 30px 0;
+            margin: 25px 0;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.35);
             border-radius: 15px;
             display: flex;
             justify-content: center;
@@ -68,49 +72,42 @@
             color: #FFD700;
             font-weight: bold;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            line-height: 1.4;
         }
         
         .pray-button {
             background: linear-gradient(to bottom, #8B4513, #5D2906);
             color: #FFD700;
             font-size: 1.8rem;
-            padding: 20px 60px;
+            padding: 18px 50px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             outline: none;
             position: relative;
             overflow: hidden;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
             border: 2px solid #FFD700;
         }
         
         .pray-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.6);
             background: linear-gradient(to bottom, #A0522D, #7A3B12);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
         }
         
         .pray-button:active {
             transform: scale(0.98);
         }
         
-        .pray-button::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-            transition: all 0.6s;
-        }
-        
-        .pray-button:hover::after {
-            transform: rotate(30deg) translate(10%, 10%);
+        .footer {
+            margin-top: 20px;
+            color: #FFEBCD;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
         .animation-area {
@@ -121,12 +118,13 @@
             height: 100%;
             pointer-events: none;
             z-index: 5;
+            overflow: hidden;
         }
         
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background-color: #FFD700;
             opacity: 0;
         }
@@ -134,7 +132,7 @@
         .incense {
             position: absolute;
             bottom: 0;
-            width: 4px;
+            width: 3px;
             height: 100px;
             background: linear-gradient(to top, #333, #8B4513, #FFD700, transparent);
             opacity: 0;
@@ -149,14 +147,66 @@
             opacity: 0;
         }
         
-        .footer {
-            margin-top: 30px;
-            color: #FFEBCD;
+        .gold-light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #FFD700;
+            box-shadow: 0 0 50px 20px #FFD700, 0 0 80px 40px rgba(255, 215, 0, 0.4);
+            opacity: 0;
+            z-index: 2;
+        }
+        
+        .background-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 1px solid #FFD700;
+        }
+        
+        .bg-btn {
+            background: linear-gradient(to bottom, #5D2906, #8B4513);
+            color: #FFD700;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
             font-size: 1rem;
+            transition: all 0.3s;
+            border: 1px solid #FFD700;
+        }
+        
+        .bg-btn:hover {
+            background: linear-gradient(to bottom, #7A3B12, #A0522D);
+        }
+        
+        .counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #FFD700;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid #FFD700;
+            font-size: 1.1rem;
+            z-index: 20;
         }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 25px;
+            }
+            
             .title {
                 font-size: 2.5rem;
             }
@@ -166,42 +216,63 @@
             }
             
             .blessing-text {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             
             .pray-button {
                 font-size: 1.5rem;
                 padding: 15px 40px;
             }
+            
+            .background-control, .counter {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-                margin: 20px;
-            }
-            
             .title {
                 font-size: 2rem;
                 letter-spacing: 4px;
             }
             
             .blessing-text {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
+            }
+            
+            .pray-button {
+                font-size: 1.3rem;
+                padding: 12px 30px;
+            }
+            
+            .footer {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="counter">
+        <i class="fas fa-hands-praying"></i> 祈福次数: <span id="count">0</span>
+    </div>
+    
+    <div class="background-control">
+        <button class="bg-btn" id="changeBg">
+            <i class="fas fa-sync-alt"></i> 切换背景
+        </button>
+    </div>
+    
     <div class="container">
-        <h1 class="title">考前拜一拜</h1>
+        <h1 class="title">考前祈福</h1>
         <p class="subtitle">心诚则灵，祈福考试顺利，金榜题名</p>
         
         <div class="blessing-area">
             <p class="blessing-text">点击下方按钮，获取老师祝福</p>
         </div>
         
-        <button class="pray-button">诚心祈福</button>
+        <button class="pray-button">
+            <i class="fas fa-hands-praying"></i> 诚心祈福 <i class="fas fa-hands-praying"></i>
+        </button>
         
         <p class="footer">心有所愿，必有所成！保持自信，认真备考，必能取得好成绩！</p>
     </div>
@@ -213,8 +284,21 @@
             const prayButton = document.querySelector('.pray-button');
             const blessingText = document.querySelector('.blessing-text');
             const animationArea = document.querySelector('.animation-area');
+            const changeBgBtn = document.getElementById('changeBg');
+            const counter = document.getElementById('count');
+            let prayerCount = 0;
             
-            // 祝福语库
+            // 背景图片数组
+            const backgrounds = [
+                'teacher.jpg',
+                'teacher2.jpg',
+                'teacher3.jpg',
+                'teacher4.jpg',
+                'teacher5.jpg',
+                'teacher6.jpg',
+            ];
+            
+            // 祝福语库（增加到25条）
             const blessings = [
                 "文曲星照，下笔如有神！",
                 "逢考必过，金榜题名！",
@@ -225,10 +309,40 @@
                 "一举高中，前程似锦！",
                 "笔下生花，妙笔生辉！",
                 "胸有成竹，马到成功！",
-                "天道酬勤，心想事成！"
+                "天道酬勤，心想事成！",
+                "自信满满，发挥超常！",
+                "学有所成，金榜题名！",
+                "考试顺利，成绩优异！",
+                "智慧之光，照亮前程！",
+                "沉着应战，旗开得胜！",
+                "稳定发挥，创造佳绩！",
+                "考试顺利，梦想成真！",
+                "思路敏捷，答题流畅！",
+                "难题迎刃而解，简单题不失分！",
+                "考神附体，逢考必过！",
+                "笔下千钧，金榜题名！",
+                "考试顺利，前程似锦！",
+                "自信满满，超常发挥！",
+                "考试顺利，梦想成真！",
+                "智慧如海，答题如流！",
+                "沉着冷静，稳操胜券！",
+                "考试顺利，一举夺魁！"
             ];
             
+            // 切换背景函数
+            function changeBackground() {
+                const randomIndex = Math.floor(Math.random() * backgrounds.length);
+                document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('${backgrounds[randomIndex]}')`;
+            }
+            
+            // 绑定切换背景按钮
+            changeBgBtn.addEventListener('click', changeBackground);
+            
             prayButton.addEventListener('click', function() {
+                // 增加祈福次数
+                prayerCount++;
+                counter.textContent = prayerCount;
+                
                 // 随机选择一条祝福语
                 const randomIndex = Math.floor(Math.random() * blessings.length);
                 blessingText.textContent = blessings[randomIndex];
@@ -244,8 +358,29 @@
             });
             
             function createPrayerAnimation() {
+                // 创建金色光芒效果
+                const goldLight = document.createElement('div');
+                goldLight.className = 'gold-light';
+                goldLight.style.left = '50%';
+                goldLight.style.top = '50%';
+                animationArea.appendChild(goldLight);
+                
+                // 光芒动画
+                const lightAnimation = goldLight.animate([
+                    { opacity: 0, width: '0px', height: '0px' },
+                    { opacity: 1, width: '10px', height: '10px' },
+                    { opacity: 0, width: '150px', height: '150px' }
+                ], {
+                    duration: 1200,
+                    easing: 'ease-out'
+                });
+                
+                lightAnimation.onfinish = () => {
+                    goldLight.remove();
+                };
+                
                 // 创建金色粒子效果
-                for (let i = 0; i < 100; i++) {
+                for (let i = 0; i < 120; i++) {
                     setTimeout(() => {
                         const confetti = document.createElement('div');
                         confetti.className = 'confetti';
@@ -263,7 +398,7 @@
                         confetti.style.backgroundColor = colors[colorIndex];
                         
                         // 随机大小
-                        const size = Math.random() * 15 + 5;
+                        const size = Math.random() * 15 + 8;
                         confetti.style.width = `${size}px`;
                         confetti.style.height = `${size}px`;
                         
@@ -276,17 +411,17 @@
                         // 动画
                         const animation = confetti.animate([
                             { opacity: 0, transform: `translateY(0) rotate(0)` },
-                            { opacity: 1, transform: `translateY(-20px) rotate(${rotation}deg)` },
-                            { opacity: 0, transform: `translateY(-80px) rotate(${rotation + 180}deg)` }
+                            { opacity: 1, transform: `translateY(-30px) rotate(${rotation}deg)` },
+                            { opacity: 0, transform: `translateY(-100px) rotate(${rotation + 360}deg)` }
                         ], {
-                            duration: 2000 + Math.random() * 1000,
+                            duration: 1800 + Math.random() * 800,
                             easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
                         });
                         
                         animation.onfinish = () => {
                             confetti.remove();
                         };
-                    }, i * 20);
+                    }, i * 15);
                 }
                 
                 // 创建香火效果
@@ -295,7 +430,7 @@
                         // 创建香
                         const incense = document.createElement('div');
                         incense.className = 'incense';
-                        incense.style.left = `${10 + i * 20}%`;
+                        incense.style.left = `${15 + i * 18}%`;
                         
                         animationArea.appendChild(incense);
                         
@@ -304,12 +439,12 @@
                             { opacity: 0, height: '0px' },
                             { opacity: 1, height: '100px' }
                         ], {
-                            duration: 500,
+                            duration: 600,
                             fill: 'forwards'
                         });
                         
                         // 创建香烟雾
-                        createIncenseSmoke(10 + i * 20);
+                        createIncenseSmoke(15 + i * 18);
                         
                         // 移除香
                         setTimeout(() => {
@@ -317,10 +452,10 @@
                                 { opacity: 1 },
                                 { opacity: 0 }
                             ], {
-                                duration: 1000,
+                                duration: 800,
                                 fill: 'forwards'
                             }).onfinish = () => incense.remove();
-                        }, 3000);
+                        }, 3500);
                     }, i * 300);
                 }
             }
@@ -336,24 +471,27 @@
                         animationArea.appendChild(smoke);
                         
                         // 随机大小
-                        const size = Math.random() * 20 + 5;
+                        const size = Math.random() * 25 + 10;
                         smoke.style.width = `${size}px`;
                         smoke.style.height = `${size}px`;
                         
+                        // 随机水平偏移
+                        const horizontalShift = (Math.random() - 0.5) * 80;
+                        
                         // 烟雾上升动画
                         const smokeAnimation = smoke.animate([
-                            { opacity: 0.8, transform: 'translateY(0) scale(1)', filter: 'blur(0px)' },
-                            { opacity: 0.5, transform: `translateY(-${100 + Math.random() * 100}px) scale(1.5)`, filter: 'blur(3px)' },
-                            { opacity: 0, transform: `translateY(-${200 + Math.random() * 100}px) scale(2.5)`, filter: 'blur(6px)' }
+                            { opacity: 0.8, transform: 'translate(0, 0) scale(1)', filter: 'blur(0px)' },
+                            { opacity: 0.6, transform: `translate(${horizontalShift}px, -${100 + Math.random() * 100}px) scale(1.8)`, filter: 'blur(4px)' },
+                            { opacity: 0, transform: `translate(${horizontalShift * 1.5}px, -${250 + Math.random() * 100}px) scale(3.0)`, filter: 'blur(8px)' }
                         ], {
-                            duration: 3000 + Math.random() * 2000,
+                            duration: 3500 + Math.random() * 1500,
                             easing: 'ease-out'
                         });
                         
                         smokeAnimation.onfinish = () => {
                             smoke.remove();
                         };
-                    }, i * 200);
+                    }, i * 120);
                 }
             }
         });
