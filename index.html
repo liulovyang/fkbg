@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考前拜一拜 - 祈福好运</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'STHeiti', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('teacher.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(139, 69, 19, 0.5); /* 深棕色半透明背景 */
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            border: 2px solid #8B4513;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            letter-spacing: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #FFEBCD;
+        }
+        
+        .blessing-area {
+            min-height: 100px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #FFD700;
+        }
+        
+        .blessing-text {
+            font-size: 1.8rem;
+            color: #FFD700;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .pray-button {
+            background: linear-gradient(to bottom, #8B4513, #5D2906);
+            color: #FFD700;
+            font-size: 1.8rem;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 2px solid #FFD700;
+        }
+        
+        .pray-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to bottom, #A0522D, #7A3B12);
+        }
+        
+        .pray-button:active {
+            transform: scale(0.98);
+        }
+        
+        .pray-button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+        
+        .pray-button:hover::after {
+            transform: rotate(30deg) translate(10%, 10%);
+        }
+        
+        .animation-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #FFD700;
+            opacity: 0;
+        }
+        
+        .incense {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            height: 100px;
+            background: linear-gradient(to top, #333, #8B4513, #FFD700, transparent);
+            opacity: 0;
+        }
+        
+        .incense-smoke {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #FFEBCD;
+            font-size: 1rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .blessing-text {
+                font-size: 1.4rem;
+            }
+            
+            .pray-button {
+                font-size: 1.5rem;
+                padding: 15px 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .title {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+            
+            .blessing-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">考前拜一拜</h1>
+        <p class="subtitle">心诚则灵，祈福考试顺利，金榜题名</p>
+        
+        <div class="blessing-area">
+            <p class="blessing-text">点击下方按钮，获取老师祝福</p>
+        </div>
+        
+        <button class="pray-button">诚心祈福</button>
+        
+        <p class="footer">心有所愿，必有所成！保持自信，认真备考，必能取得好成绩！</p>
+    </div>
+    
+    <div class="animation-area"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prayButton = document.querySelector('.pray-button');
+            const blessingText = document.querySelector('.blessing-text');
+            const animationArea = document.querySelector('.animation-area');
+            
+            // 祝福语库
+            const blessings = [
+                "文曲星照，下笔如有神！",
+                "逢考必过，金榜题名！",
+                "智慧如泉涌，答题如行云！",
+                "考的全会，蒙的全对！",
+                "沉着冷静，超常发挥！",
+                "思路清晰，答题精准！",
+                "一举高中，前程似锦！",
+                "笔下生花，妙笔生辉！",
+                "胸有成竹，马到成功！",
+                "天道酬勤，心想事成！"
+            ];
+            
+            prayButton.addEventListener('click', function() {
+                // 随机选择一条祝福语
+                const randomIndex = Math.floor(Math.random() * blessings.length);
+                blessingText.textContent = blessings[randomIndex];
+                
+                // 按钮动画效果
+                prayButton.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    prayButton.style.transform = 'scale(1)';
+                }, 200);
+                
+                // 创建祈福动画效果
+                createPrayerAnimation();
+            });
+            
+            function createPrayerAnimation() {
+                // 创建金色粒子效果
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        
+                        // 随机位置
+                        const posX = Math.random() * 100;
+                        const posY = Math.random() * 100;
+                        
+                        // 随机颜色（金色系）
+                        const colors = ['#FFD700', '#FFDF00', '#F0E68C', '#EEE8AA'];
+                        const colorIndex = Math.floor(Math.random() * colors.length);
+                        
+                        confetti.style.left = `${posX}%`;
+                        confetti.style.top = `${posY}%`;
+                        confetti.style.backgroundColor = colors[colorIndex];
+                        
+                        // 随机大小
+                        const size = Math.random() * 15 + 5;
+                        confetti.style.width = `${size}px`;
+                        confetti.style.height = `${size}px`;
+                        
+                        // 随机旋转
+                        const rotation = Math.random() * 360;
+                        confetti.style.transform = `rotate(${rotation}deg)`;
+                        
+                        animationArea.appendChild(confetti);
+                        
+                        // 动画
+                        const animation = confetti.animate([
+                            { opacity: 0, transform: `translateY(0) rotate(0)` },
+                            { opacity: 1, transform: `translateY(-20px) rotate(${rotation}deg)` },
+                            { opacity: 0, transform: `translateY(-80px) rotate(${rotation + 180}deg)` }
+                        ], {
+                            duration: 2000 + Math.random() * 1000,
+                            easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+                        });
+                        
+                        animation.onfinish = () => {
+                            confetti.remove();
+                        };
+                    }, i * 20);
+                }
+                
+                // 创建香火效果
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        // 创建香
+                        const incense = document.createElement('div');
+                        incense.className = 'incense';
+                        incense.style.left = `${10 + i * 20}%`;
+                        
+                        animationArea.appendChild(incense);
+                        
+                        // 香出现动画
+                        incense.animate([
+                            { opacity: 0, height: '0px' },
+                            { opacity: 1, height: '100px' }
+                        ], {
+                            duration: 500,
+                            fill: 'forwards'
+                        });
+                        
+                        // 创建香烟雾
+                        createIncenseSmoke(10 + i * 20);
+                        
+                        // 移除香
+                        setTimeout(() => {
+                            incense.animate([
+                                { opacity: 1 },
+                                { opacity: 0 }
+                            ], {
+                                duration: 1000,
+                                fill: 'forwards'
+                            }).onfinish = () => incense.remove();
+                        }, 3000);
+                    }, i * 300);
+                }
+            }
+            
+            function createIncenseSmoke(leftPos) {
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const smoke = document.createElement('div');
+                        smoke.className = 'incense-smoke';
+                        smoke.style.left = `${leftPos}%`;
+                        smoke.style.bottom = '0';
+                        
+                        animationArea.appendChild(smoke);
+                        
+                        // 随机大小
+                        const size = Math.random() * 20 + 5;
+                        smoke.style.width = `${size}px`;
+                        smoke.style.height = `${size}px`;
+                        
+                        // 烟雾上升动画
+                        const smokeAnimation = smoke.animate([
+                            { opacity: 0.8, transform: 'translateY(0) scale(1)', filter: 'blur(0px)' },
+                            { opacity: 0.5, transform: `translateY(-${100 + Math.random() * 100}px) scale(1.5)`, filter: 'blur(3px)' },
+                            { opacity: 0, transform: `translateY(-${200 + Math.random() * 100}px) scale(2.5)`, filter: 'blur(6px)' }
+                        ], {
+                            duration: 3000 + Math.random() * 2000,
+                            easing: 'ease-out'
+                        });
+                        
+                        smokeAnimation.onfinish = () => {
+                            smoke.remove();
+                        };
+                    }, i * 200);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
